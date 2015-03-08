@@ -19,7 +19,6 @@ SOURCES += src/harbour-interval-camera.cpp
 OTHER_FILES += qml/harbour-interval-camera.qml \
     qml/cover/CoverPage.qml \
     qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/harbour-interval-camera.changes.in \
     rpm/harbour-interval-camera.spec \
     rpm/harbour-interval-camera.yaml \
