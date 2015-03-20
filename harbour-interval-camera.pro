@@ -23,7 +23,8 @@ OTHER_FILES += qml/harbour-interval-camera.qml \
     rpm/harbour-interval-camera.spec \
     rpm/harbour-interval-camera.yaml \
     translations/*.ts \
-    harbour-interval-camera.desktop
+    harbour-interval-camera.desktop \
+    qml/localdb.js
 
 # to disable building translations every time, comment out the
 # following CONFIG line
