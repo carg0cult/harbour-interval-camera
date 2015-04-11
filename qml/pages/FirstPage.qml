@@ -29,7 +29,7 @@ Page {
 		id: column
 		width: parent.width
 
-		PageHeader { title: "Interval Camera" }
+		PageHeader { title: qsTr("Interval Camera") }
 
 		TextField {
 			id: interval

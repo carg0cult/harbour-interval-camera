@@ -19,5 +19,9 @@ Camera</source>
         <source>Run</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Interval Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
