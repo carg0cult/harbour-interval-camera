@@ -57,7 +57,7 @@ Page {
 
 	PositionSource {
 		id: posSource
-		updateInterval: 1000
+        updateInterval: 3000
 		active: false
 		property var lastCoordinate: QtPositioning.coordinate(90, 0)
 
