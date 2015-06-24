@@ -1,6 +1,6 @@
 Name: harbour-interval-camera
 Summary: Takes photos in distance intervals
-Version: 0.1
+Version: 1.1
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # http://gitorious.org/meego-developer-tools/spectacle/blobs/master/data/GROUPS
@@ -12,7 +12,10 @@ License: LICENSE
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
-  Keeps taking a photo when the position has changed by a given distance. Photos are saved in the Pictures directory. They are geotagged.
+  This app takes a photo each time you have moved a given distance. The distance is taken from GPS. This continues as long as the Run button is on, even when the screen is off.
+  Photos are saved in the Pictures directory. They are geotagged.
+  GPS and camera together drain the battery quite quickly.
+  Other camera apps, like the Jolla camera app, may not work correctly while Interval Camera is running.
 Configure: none
 # The qtc5 builder inserts macros to allow QtCreator to have fine
 # control over qmake/make execution
