@@ -69,29 +69,32 @@ Page {
 			var coord = posSource.position.coordinate
 			var distance = coord.distanceTo(posSource.lastCoordinate)
             if (distance > interval.text) {
-                camera.imageCapture.setMetadata("GPSLatitude", coord.latitude)
-                camera.imageCapture.setMetadata("GPSLongitude", coord.longitude)
-                camera.imageCapture.setMetadata("GPSAltitude", coord.altitude)
-
-//                var date = new Date();
-//                console.log(Qt.formatDateTime(date,'yyyy-MM-dd-hh-mm-ss'))
-//                camera.imageCapture.setMetadata("Date", date)
+                setGpsData(coord)
+                setOrientation(orSensor.reading.orientation)
                 camera.imageCapture.setMetadata("Date", posSource.position.timestamp)
-
-                if (orSensor.reading.orientation === OrientationReading.RightUp)
-                    camera.imageCapture.setMetadata("Orientation", 0)
-                else if (orSensor.reading.orientation === OrientationReading.TopUp)
-                    camera.imageCapture.setMetadata("Orientation", 270)
-                else if (orSensor.reading.orientation === OrientationReading.LeftUp)
-                    camera.imageCapture.setMetadata("Orientation", 180)
-                else if (orSensor.reading.orientation === OrientationReading.TopDown)
-                    camera.imageCapture.setMetadata("Orientation", 90)
 
                 camera.imageCapture.capture()
 				posSource.lastCoordinate.latitude = coord.latitude
 				posSource.lastCoordinate.longitude = coord.longitude
 			}
 		}
+
+        function setGpsData(coord) {
+            camera.imageCapture.setMetadata("GPSLatitude", coord.latitude)
+            camera.imageCapture.setMetadata("GPSLongitude", coord.longitude)
+            camera.imageCapture.setMetadata("GPSAltitude", coord.altitude)
+        }
+
+        function setOrientation(orientation) {
+            if (orientation === OrientationReading.RightUp)
+                camera.imageCapture.setMetadata("Orientation", 0)
+            else if (orientation === OrientationReading.TopUp)
+                camera.imageCapture.setMetadata("Orientation", 270)
+            else if (orientation === OrientationReading.LeftUp)
+                camera.imageCapture.setMetadata("Orientation", 180)
+            else if (orientation === OrientationReading.TopDown)
+                camera.imageCapture.setMetadata("Orientation", 90)
+        }
 	}
 
     OrientationSensor {
