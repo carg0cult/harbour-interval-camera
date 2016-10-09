@@ -18,6 +18,7 @@
 import QtQuick 2.0
 import QtMultimedia 5.0
 import QtPositioning 5.2
+import QtSensors 5.0
 import Sailfish.Silica 1.0
 import "../localdb.js" as DB
 
@@ -48,7 +49,10 @@ Page {
 		id: runSwitch
 		text: qsTr("Run")
 		anchors.verticalCenter: parent.verticalCenter
-		onCheckedChanged: checked ? posSource.start() : posSource.stop()
+        onCheckedChanged: {
+            checked ? posSource.start() : posSource.stop()
+            checked ? orSensor.start() : orSensor.stop()
+        }
 	}
 
 	Camera {
@@ -59,20 +63,41 @@ Page {
 		id: posSource
         updateInterval: 3000
 		active: false
-		property var lastCoordinate: QtPositioning.coordinate(90, 0)
+        property var lastCoordinate: QtPositioning.coordinate(90, 0)
 
 		onPositionChanged: {
 			var coord = posSource.position.coordinate
 			var distance = coord.distanceTo(posSource.lastCoordinate)
-			if (distance > interval.text) {
-				camera.imageCapture.setMetadata("GPSLatitude", coord.latitude)
-				camera.imageCapture.setMetadata("GPSLongitude", coord.longitude)
-				camera.imageCapture.capture()
+            if (distance > interval.text) {
+                camera.imageCapture.setMetadata("GPSLatitude", coord.latitude)
+                camera.imageCapture.setMetadata("GPSLongitude", coord.longitude)
+                camera.imageCapture.setMetadata("GPSAltitude", coord.altitude)
+
+//                var date = new Date();
+//                console.log(Qt.formatDateTime(date,'yyyy-MM-dd-hh-mm-ss'))
+//                camera.imageCapture.setMetadata("Date", date)
+                camera.imageCapture.setMetadata("Date", posSource.position.timestamp)
+
+                if (orSensor.reading.orientation === OrientationReading.RightUp)
+                    camera.imageCapture.setMetadata("Orientation", 0)
+                else if (orSensor.reading.orientation === OrientationReading.TopUp)
+                    camera.imageCapture.setMetadata("Orientation", 270)
+                else if (orSensor.reading.orientation === OrientationReading.LeftUp)
+                    camera.imageCapture.setMetadata("Orientation", 180)
+                else if (orSensor.reading.orientation === OrientationReading.TopDown)
+                    camera.imageCapture.setMetadata("Orientation", 90)
+
+                camera.imageCapture.capture()
 				posSource.lastCoordinate.latitude = coord.latitude
 				posSource.lastCoordinate.longitude = coord.longitude
 			}
 		}
 	}
+
+    OrientationSensor {
+        id: orSensor
+        active: false
+    }
 
 	Component.onCompleted: {
 		DB.initializeDB()
