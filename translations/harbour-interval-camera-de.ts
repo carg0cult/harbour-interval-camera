@@ -12,16 +12,16 @@ Camera</source>
 <context>
     <name>FirstPage</name>
     <message>
+        <source>Interval Camera</source>
+        <translation>Intervallkamera</translation>
+    </message>
+    <message>
         <source>Distance between photos in m</source>
-        <translation>Abstand zwischen den Fotos in m</translation>
+        <translation>Entfernung zwischen Fotos in m</translation>
     </message>
     <message>
         <source>Run</source>
         <translation>An</translation>
-    </message>
-    <message>
-        <source>Interval Camera</source>
-        <translation>Intervallkamera</translation>
     </message>
 </context>
 </TS>

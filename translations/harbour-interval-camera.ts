@@ -12,15 +12,15 @@ Camera</source>
 <context>
     <name>FirstPage</name>
     <message>
+        <source>Interval Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Distance between photos in m</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Run</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Interval Camera</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
